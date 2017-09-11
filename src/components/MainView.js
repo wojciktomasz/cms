@@ -12,7 +12,6 @@ export default connect(
 )(
     class MainView extends React.Component {
 
-
         render() {
             console.log(this.props.authenticated)
 
