@@ -1,3 +1,5 @@
+import users from '../data/users.json'
+
 const AUTH_USER = 'auth_user'
 const UNAUTH_USER = 'unauth_user'
 
@@ -11,6 +13,7 @@ export const unauth = () => ({
 
 
 const initialState = {
+    users,
     authenticated: false
 }
 

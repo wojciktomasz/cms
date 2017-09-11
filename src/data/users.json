@@ -1,0 +1,17 @@
+[
+  {
+    "email": "admin@desmart.com",
+    "password": "admin",
+    "type": "admin"
+  },
+  {
+    "email": "user@desmart.com",
+    "password": "user",
+    "type": "user"
+  },
+  {
+    "email": "user2@desmart.com",
+    "password": "user2",
+    "type": "user"
+  }
+]

@@ -17,7 +17,7 @@ export default connect(
         return (
             <div>
                 <Link to="/main">
-                    <button onClick={this.props.auth}>Sign Up</button>
+                    <button onClick={this.props.auth}>Log in</button>
                 </Link>
             </div>
         )

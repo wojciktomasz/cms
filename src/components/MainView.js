@@ -19,7 +19,7 @@ export default connect(
             return (
                 <div>
                     <h1>CMS</h1>
-                    <button onClick={this.props.unauth}>Sign Out</button>
+                    <button onClick={this.props.unauth}>Log Out</button>
                 </div>
             )
         }
