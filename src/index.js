@@ -8,6 +8,8 @@ import createStore from "./store/createStore"
 const store = createStore({})
 
 
-ReactDOM.render(<App store={store}/>, document.getElementById('root'))
+ReactDOM.render(
+    <App store={store}/>,
+    document.getElementById('root'))
 registerServiceWorker()
 

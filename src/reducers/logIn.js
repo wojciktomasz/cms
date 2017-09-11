@@ -1,7 +1,12 @@
 const AUTH_USER = 'auth_user'
+const UNAUTH_USER = 'unauth_user'
 
 export const auth = () => ({
     type: AUTH_USER
+})
+
+export const unauth = () => ({
+    type: UNAUTH_USER
 })
 
 
@@ -15,7 +20,13 @@ export default function (state = initialState, action = {}) {
         case AUTH_USER:
             return {
                 ...state,
-                authenticated: true }
+                authenticated: true
+            }
+        case UNAUTH_USER:
+            return {
+                ...state,
+                authenticated: false
+            }
         default:
             return state
     }

@@ -1,12 +1,11 @@
 import React from 'react'
 import { auth }from '../reducers/logIn'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 
 export default connect(
-    state => ({
-        authenticated: state.logIn.authenticated
-    }),
+    state => ({}),
     dispatch => ({
         auth: () => dispatch(auth())
     })
@@ -15,11 +14,11 @@ export default connect(
 
 
     render() {
-        console.log(this.props.authenticated)
-
         return (
             <div>
-                <button onClick={this.props.auth}>Sign Up</button>
+                <Link to="/main">
+                    <button onClick={this.props.auth}>Sign Up</button>
+                </Link>
             </div>
         )
     }
