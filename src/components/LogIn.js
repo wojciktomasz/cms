@@ -1,19 +1,27 @@
 import React from 'react'
+import { auth }from '../reducers/logIn'
+import { connect } from 'react-redux'
 
-class LogIn extends React.Component {
 
-    handleSubmit = event => {
-        event.preventDefault()
-        console.log(this.state)
-    }
+export default connect(
+    state => ({
+        authenticated: state.logIn.authenticated
+    }),
+    dispatch => ({
+        auth: () => dispatch(auth())
+    })
+)(
+    class LogIn extends React.Component {
+
 
     render() {
+        console.log(this.props.authenticated)
+
         return (
-            <form onSubmit={this.handleSubmit}>
-                <button>Sign Up</button>
-            </form>
+            <div>
+                <button onClick={this.props.auth}>Sign Up</button>
+            </div>
         )
     }
 }
-
-export default LogIn
+)
