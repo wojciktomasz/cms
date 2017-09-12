@@ -34,7 +34,7 @@ export default function (state = initialState, action = {}) {
         case UNAUTH_USER:
             return {
                 ...state,
-                authenticated: false
+                userLoggedIn: null
             }
         case GET_USER:
             return {

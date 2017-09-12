@@ -3,14 +3,16 @@ import {Route} from 'react-router-dom'
 import LogIn from '../components/LogIn'
 import MainView from '../components/MainView'
 import {connect} from 'react-redux'
-import {auth} from '../reducers/logIn'
+import {auth, getUsr} from '../reducers/logIn'
 
 export default connect(
     state => ({
-        authenticated: state.logIn.authenticated
+        authenticated: state.logIn.authenticated,
+        userLoggedIn: state.logIn.userLoggedIn
     }),
     dispatch => ({
-        auth: () => dispatch(auth())
+        auth: () => dispatch(auth()),
+        getUsr: () => dispatch(getUsr())
     })
 )(
     class App extends Component {
@@ -18,8 +20,8 @@ export default connect(
             console.log(this.props.authenticated)
             return (
                 <div>
-                    <Route exact path="/" component={LogIn}/>
-                    <Route path="/main" component={this.props.authenticated ? MainView : LogIn}/>
+                    <Route exact path="/" component={this.props.userLoggedIn ? MainView : LogIn}/>
+                    <Route path="/main" component={this.props.userLoggedIn ? MainView : LogIn}/>
                 </div>
             )
         }
