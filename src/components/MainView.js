@@ -3,9 +3,7 @@ import { connect } from 'react-redux'
 import { unauth } from '../reducers/logIn'
 
 export default connect(
-    state => ({
-        authenticated: state.logIn.authenticated
-    }),
+    state => ({}),
     dispatch => ({
         unauth: () => dispatch(unauth())
     })

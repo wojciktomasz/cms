@@ -3,7 +3,7 @@ import {Route} from 'react-router-dom'
 import LogIn from '../components/LogIn'
 import MainView from '../components/MainView'
 import {connect} from 'react-redux'
-import {auth, getUsr} from '../reducers/logIn'
+import {getUsr} from '../reducers/logIn'
 
 export default connect(
     state => ({
@@ -11,7 +11,6 @@ export default connect(
         userLoggedIn: state.logIn.userLoggedIn
     }),
     dispatch => ({
-        auth: () => dispatch(auth()),
         getUsr: () => dispatch(getUsr())
     })
 )(

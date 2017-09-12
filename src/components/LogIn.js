@@ -1,17 +1,17 @@
 import users from '../data/users.json'
 import React from 'react'
-import {auth, getUsr, getError} from '../reducers/logIn'
-import {connect} from 'react-redux'
+import { getUsr } from '../reducers/logIn'
+import { getError } from "../reducers/errorMessage"
+import { connect } from 'react-redux'
 import {Button, Form, Grid, Segment, Message} from 'semantic-ui-react'
 
 
 
 export default connect(
     state => ({
-        errorMessage: state.logIn.errorMessage
+        errorMessage: state.errorMessage.message
     }),
     dispatch => ({
-        auth: () => dispatch(auth()),
         getUsr: data => dispatch(getUsr(data)),
         getError: data => dispatch(getError(data))
     })
@@ -43,9 +43,9 @@ export default connect(
 
             userPasswordVerification && userTypeVerification ? this.props.getUsr(formData) : this.props.getUsr(null)
 
-            const errorMessage = userEmailVerification === [] || !userPasswordVerification || !userTypeVerification ? 'incorrect password or username' : null
+            const errorMessage = userEmailVerification === [] || !userPasswordVerification || !userTypeVerification ? 'E-mail address or password incorrect. Please try again.' : null
             console.log(errorMessage)
-            errorMessage && this.props.getError(errorMessage)
+            errorMessage && this.props.getError(errorMessage) && setTimeout(()=>this.props.getError(null), 5000)
 
         }
 
