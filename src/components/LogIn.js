@@ -1,17 +1,19 @@
 import users from '../data/users.json'
 import React from 'react'
-import {auth, getUsr} from '../reducers/logIn'
+import {auth, getUsr, getError} from '../reducers/logIn'
 import {connect} from 'react-redux'
-import {Button, Form, Grid, Segment} from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import {Button, Form, Grid, Segment, Message} from 'semantic-ui-react'
 
 
 
 export default connect(
-    state => ({}),
+    state => ({
+        errorMessage: state.logIn.errorMessage
+    }),
     dispatch => ({
         auth: () => dispatch(auth()),
-        getUsr: data => dispatch(getUsr(data))
+        getUsr: data => dispatch(getUsr(data)),
+        getError: data => dispatch(getError(data))
     })
 )(
     class LogIn extends React.Component {
@@ -33,15 +35,18 @@ export default connect(
             const userEmailVerification = users.filter(user => user.email === formData.email)
             console.log(userEmailVerification)
 
-            const userPasswordVerification = userEmailVerification !== [] ?
-                userEmailVerification[0] && (userEmailVerification[0].password === formData.password) ? true : console.log('wrong password') :
-                console.log('user not registered')
+            const userPasswordVerification = userEmailVerification[0] && (userEmailVerification[0].password === formData.password)
             console.log(userPasswordVerification)
 
             const userTypeVerification = userPasswordVerification && userEmailVerification[0].type === 'admin'
             console.log(userTypeVerification)
 
             userPasswordVerification && userTypeVerification ? this.props.getUsr(formData) : this.props.getUsr(null)
+
+            const errorMessage = userEmailVerification === [] || !userPasswordVerification || !userTypeVerification ? 'incorrect password or username' : null
+            console.log(errorMessage)
+            errorMessage && this.props.getError(errorMessage)
+
         }
 
 
@@ -68,6 +73,11 @@ export default connect(
                                     <Button color='teal' fluid size='large' type='submit'>Login</Button>
                                 </Segment>
                             </Form>
+                            {this.props.errorMessage &&
+                                <Message>
+                                    {this.props.errorMessage}
+                                </Message>
+                            }
                         </Grid.Column>
                     </Grid>
                 </div>
