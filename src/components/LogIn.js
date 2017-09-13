@@ -46,6 +46,11 @@ export default connect(
             console.log(errorMessage)
             errorMessage && this.props.getError(errorMessage) && setTimeout(() => this.props.getError(null), 5000)
 
+            const errorMessageEmailFieldEmpty = formData.email === "" ? 'E-mail is required.' : null
+            errorMessageEmailFieldEmpty && this.props.getError(errorMessageEmailFieldEmpty) && setTimeout(() => this.props.getError(null), 5000)
+
+            const errorMessagePasswordFieldEmpty = formData.password === "" ? 'Password is required.' : null
+            errorMessagePasswordFieldEmpty && this.props.getError(errorMessagePasswordFieldEmpty) && setTimeout(() => this.props.getError(null), 5000)
         }
 
 
@@ -63,7 +68,7 @@ export default connect(
                                 <Segment stacked>
                                     <div className="field">
                                         <label>e-mail</label>
-                                        <Form.Field error={this.props.errorMessage}>
+                                        <Form.Field error={this.props.errorMessage !==null}>
                                             <input ref='email'
                                                    type='text'
                                                    name='email'
@@ -72,7 +77,7 @@ export default connect(
                                     </div>
                                     <div className="field">
                                         <label>password</label>
-                                        <Form.Field error={this.props.errorMessage}>
+                                        <Form.Field error={this.props.errorMessage !== null}>
                                             <input ref='password'
                                                    type='password'
                                                    name='password'
