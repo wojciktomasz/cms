@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
-import {Route} from 'react-router-dom'
-import LogIn from '../components/LogIn'
-import MainView from '../components/MainView'
+import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {getUsr} from '../reducers/logIn'
 
 export default connect(
     state => ({
-        authenticated: state.logIn.authenticated,
         userLoggedIn: state.logIn.userLoggedIn
     }),
     dispatch => ({
@@ -16,11 +13,9 @@ export default connect(
 )(
     class App extends Component {
         render() {
-            console.log(this.props.authenticated)
             return (
                 <div>
-                    <Route exact path="/" component={this.props.userLoggedIn ? MainView : LogIn}/>
-                    <Route path="/main" component={this.props.userLoggedIn ? MainView : LogIn}/>
+                    <Redirect to={this.props.userLoggedIn ? '/main' : '/login'}/>
                 </div>
             )
         }

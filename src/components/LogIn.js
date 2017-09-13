@@ -4,7 +4,6 @@ import {getUsr} from '../reducers/logIn'
 import {getError} from "../reducers/errorMessage"
 import {connect} from 'react-redux'
 import {Button, Form, Grid, Segment, Message} from 'semantic-ui-react'
-import {Link} from 'react-router-dom'
 
 
 export default connect(
@@ -65,7 +64,8 @@ export default connect(
                                     <div className="field">
                                         <label>e-mail</label>
                                         <Form.Field error={this.props.errorMessage}>
-                                            <input ref='email' type='text'
+                                            <input ref='email'
+                                                   type='text'
                                                    name='email'
                                                    placeholder='Enter e-mail'/>
                                         </Form.Field>
