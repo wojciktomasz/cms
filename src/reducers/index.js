@@ -3,6 +3,6 @@ import logIn from './logIn'
 import errorMessage from './errorMessage'
 
 export default combineReducers({
-    logIn,
-    errorMessage
+  logIn,
+  errorMessage
 })

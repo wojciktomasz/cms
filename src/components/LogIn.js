@@ -1,105 +1,98 @@
 import users from '../data/users.json'
 import React from 'react'
-import {getUsr} from '../reducers/logIn'
-import {getError} from "../reducers/errorMessage"
-import {connect} from 'react-redux'
-import {Button, Form, Grid, Segment, Message} from 'semantic-ui-react'
+import { getUsr } from '../reducers/logIn'
+import { getError } from "../reducers/errorMessage"
+import { connect } from 'react-redux'
+import { Button, Form, Grid, Segment, Message } from 'semantic-ui-react'
 
 
 export default connect(
-    state => ({
-        errorMessage: state.errorMessage.message
-    }),
-    dispatch => ({
-        getUsr: data => dispatch(getUsr(data)),
-        getError: data => dispatch(getError(data))
-    })
+  state => ({
+    errorMessage: state.errorMessage.message
+  }),
+  dispatch => ({
+    getUsr: data => dispatch(getUsr(data)),
+    getError: data => dispatch(getError(data))
+  })
 )(
-    class LogIn extends React.Component {
-        constructor(props) {
-            super(props);
-            this.handleSubmit = this.handleSubmit.bind(this);
-        }
-
-        handleSubmit(e) {
-            e.preventDefault()
-
-            const formData = {}
-            for (const field in this.refs) {
-                formData[field] = this.refs[field].value;
-            }
-            console.log(users)
-            console.log(formData)
-
-            const userEmailVerification = users.filter(user => user.email === formData.email)
-            console.log(userEmailVerification)
-
-            const userPasswordVerification = userEmailVerification[0] && (userEmailVerification[0].password === formData.password)
-            console.log(userPasswordVerification)
-
-            const userTypeVerification = userPasswordVerification && userEmailVerification[0].type === 'admin'
-            console.log(userTypeVerification)
-
-            userPasswordVerification && userTypeVerification ? this.props.getUsr(formData) : this.props.getUsr(null)
-
-            const errorMessage = userEmailVerification === [] || (userEmailVerification.length > 0 && !userPasswordVerification) || !userPasswordVerification || !userTypeVerification ? 'E-mail address or password incorrect. Please try again.' : null
-            console.log(errorMessage)
-            errorMessage && this.props.getError(errorMessage) && setTimeout(() => this.props.getError(null), 5000)
-
-            const errorMessageEmailFieldEmpty = formData.email === "" && formData.password !== "" ? 'E-mail is required.' : null
-            errorMessageEmailFieldEmpty && this.props.getError(errorMessageEmailFieldEmpty) && setTimeout(() => this.props.getError(null), 5000)
-
-            const errorMessagePasswordFieldEmpty = formData.password === "" && formData.email !== "" ? 'Password is required.' : null
-            errorMessagePasswordFieldEmpty && this.props.getError(errorMessagePasswordFieldEmpty) && setTimeout(() => this.props.getError(null), 5000)
-
-            const errorMessageEmailAndPasswordFieldEmpty = formData.password === "" && formData.email === "" ? 'E-mail and password are required.' : null
-            errorMessageEmailAndPasswordFieldEmpty && this.props.getError(errorMessageEmailAndPasswordFieldEmpty) && setTimeout(() => this.props.getError(null), 5000)
-        }
-
-
-        render() {
-            return (
-                <div className='login-form'>
-                    <Grid
-                        textAlign='center'
-                        style={{height: '100%'}}
-                        verticalAlign='middle'
-                    >
-                        <Grid.Column style={{maxWidth: 450}}>
-                            <Form onSubmit={this.handleSubmit} className='ui form' size='large'
-                                  style={{marginTop: '20%'}}>
-                                <Segment stacked>
-                                    <div className="field">
-                                        <label>e-mail</label>
-                                        <Form.Field error={this.props.errorMessage !==null}>
-                                            <input ref='email'
-                                                   type='text'
-                                                   name='email'
-                                                   placeholder='Enter e-mail'/>
-                                        </Form.Field>
-                                    </div>
-                                    <div className="field">
-                                        <label>password</label>
-                                        <Form.Field error={this.props.errorMessage !== null}>
-                                            <input ref='password'
-                                                   type='password'
-                                                   name='password'
-                                                   placeholder='Enter password'/>
-                                        </Form.Field>
-                                    </div>
-                                    <Button color='teal' fluid size='large' type='submit'>Login</Button>
-                                </Segment>
-                            </Form>
-                            {this.props.errorMessage &&
-                            <Message>
-                                {this.props.errorMessage}
-                            </Message>
-                            }
-                        </Grid.Column>
-                    </Grid>
-                </div>
-
-            )
-        }
+  class LogIn extends React.Component {
+    constructor(props) {
+      super(props);
+      this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    handleSubmit(e) {
+      e.preventDefault()
+
+      const formData = {}
+      for (const field in this.refs) {
+        formData[field] = this.refs[field].value;
+      }
+
+      const userEmailVerification = users.filter(user => user.email === formData.email)
+      const userPasswordVerification = userEmailVerification[0] && (userEmailVerification[0].password === formData.password)
+      const userTypeVerification = userPasswordVerification && userEmailVerification[0].type === 'admin'
+
+      userPasswordVerification && userTypeVerification ? this.props.getUsr(formData) : this.props.getUsr(null)
+      const displayErrorFor = ms => setTimeout(() => this.props.getError(null), ms)
+
+      const errorMessage = userEmailVerification === [] || (userEmailVerification.length > 0 && !userPasswordVerification) || !userPasswordVerification || !userTypeVerification ? 'E-mail address or password incorrect. Please try again.' : null
+      errorMessage && this.props.getError(errorMessage) && displayErrorFor(5000)
+
+      const errorMessageEmailFieldEmpty = formData.email === "" && formData.password !== "" ? 'E-mail is required.' : null
+      errorMessageEmailFieldEmpty && this.props.getError(errorMessageEmailFieldEmpty) && displayErrorFor(5000)
+
+      const errorMessagePasswordFieldEmpty = formData.password === "" && formData.email !== "" ? 'Password is required.' : null
+      errorMessagePasswordFieldEmpty && this.props.getError(errorMessagePasswordFieldEmpty) && displayErrorFor(5000)
+
+      const errorMessageEmailAndPasswordFieldEmpty = formData.password === "" && formData.email === "" ? 'E-mail and password are required.' : null
+      errorMessageEmailAndPasswordFieldEmpty && this.props.getError(errorMessageEmailAndPasswordFieldEmpty) && displayErrorFor(5000)
+    }
+
+
+    render() {
+      return (
+        <div className='login-form'>
+          <Grid
+            textAlign='center'
+            style={{height: '100%'}}
+            verticalAlign='middle'
+          >
+            <Grid.Column style={{maxWidth: 450}}>
+              <Form onSubmit={this.handleSubmit} className='ui form' size='large'
+                    style={{marginTop: '20%'}}>
+                <Segment stacked>
+                  <div className="field">
+                    <label>e-mail</label>
+                    <Form.Field error={this.props.errorMessage !== null}>
+                      <input ref='email'
+                             type='text'
+                             name='email'
+                             placeholder='Enter e-mail'/>
+                    </Form.Field>
+                  </div>
+                  <div className="field">
+                    <label>password</label>
+                    <Form.Field error={this.props.errorMessage !== null}>
+                      <input ref='password'
+                             type='password'
+                             name='password'
+                             placeholder='Enter password'/>
+                    </Form.Field>
+                  </div>
+                  <Button color='teal' fluid size='large' type='submit'>Login</Button>
+                </Segment>
+              </Form>
+              {this.props.errorMessage &&
+              <Message>
+                {this.props.errorMessage}
+              </Message>
+              }
+            </Grid.Column>
+          </Grid>
+        </div>
+
+      )
+    }
+  }
 )

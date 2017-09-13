@@ -10,9 +10,9 @@ const store = createStore({})
 
 
 ReactDOM.render((
-    <Router>
-        <App store={store}/>
-    </Router>
-        ), document.getElementById('root'))
+  <Router>
+    <App store={store}/>
+  </Router>
+), document.getElementById('root'))
 registerServiceWorker()
 
