@@ -1,10 +1,10 @@
 import users from '../data/users.json'
 import React from 'react'
-import { getUsr } from '../reducers/logIn'
-import { getError } from "../reducers/errorMessage"
-import { connect } from 'react-redux'
+import {getUsr} from '../reducers/logIn'
+import {getError} from "../reducers/errorMessage"
+import {connect} from 'react-redux'
 import {Button, Form, Grid, Segment, Message} from 'semantic-ui-react'
-
+import {Link} from 'react-router-dom'
 
 
 export default connect(
@@ -45,7 +45,7 @@ export default connect(
 
             const errorMessage = userEmailVerification === [] || !userPasswordVerification || !userTypeVerification ? 'E-mail address or password incorrect. Please try again.' : null
             console.log(errorMessage)
-            errorMessage && this.props.getError(errorMessage) && setTimeout(()=>this.props.getError(null), 5000)
+            errorMessage && this.props.getError(errorMessage) && setTimeout(() => this.props.getError(null), 5000)
 
         }
 
@@ -59,24 +59,33 @@ export default connect(
                         verticalAlign='middle'
                     >
                         <Grid.Column style={{maxWidth: 450}}>
-                            <Form onSubmit={this.handleSubmit} className='ui form' size='large' style={{ marginTop: '20%' }}>
+                            <Form onSubmit={this.handleSubmit} className='ui form' size='large'
+                                  style={{marginTop: '20%'}}>
                                 <Segment stacked>
                                     <div className="field">
                                         <label>e-mail</label>
-                                        <input ref='email' type='text' name='email' placeholder='Enter e-mail'/>
+                                        <Form.Field error={this.props.errorMessage}>
+                                            <input ref='email' type='text'
+                                                   name='email'
+                                                   placeholder='Enter e-mail'/>
+                                        </Form.Field>
                                     </div>
                                     <div className="field">
                                         <label>password</label>
-                                        <input ref='password' type='password' name='password'
-                                               placeholder='Enter password'/>
+                                        <Form.Field error={this.props.errorMessage}>
+                                            <input ref='password'
+                                                   type='password'
+                                                   name='password'
+                                                   placeholder='Enter password'/>
+                                        </Form.Field>
                                     </div>
                                     <Button color='teal' fluid size='large' type='submit'>Login</Button>
                                 </Segment>
                             </Form>
                             {this.props.errorMessage &&
-                                <Message>
-                                    {this.props.errorMessage}
-                                </Message>
+                            <Message>
+                                {this.props.errorMessage}
+                            </Message>
                             }
                         </Grid.Column>
                     </Grid>

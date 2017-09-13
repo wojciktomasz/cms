@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { unauth } from '../reducers/logIn'
+import { Link } from 'react-router-dom'
 
 export default connect(
     state => ({}),
@@ -16,7 +17,9 @@ export default connect(
             return (
                 <div>
                     <h1>CMS</h1>
+                    <Link to="/">
                     <button onClick={this.props.unauth}>Log Out</button>
+                    </Link>
                 </div>
             )
         }
