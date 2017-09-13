@@ -5,7 +5,6 @@ import { getError } from "../reducers/errorMessage"
 import { connect } from 'react-redux'
 import { Button, Form, Grid, Segment, Message } from 'semantic-ui-react'
 
-
 export default connect(
   state => ({
     errorMessage: state.errorMessage.message
@@ -55,7 +54,6 @@ export default connect(
       errorMessageEmailAndPasswordFieldEmpty && this.props.getError(errorMessageEmailAndPasswordFieldEmpty) && displayErrorFor(5000)
     }
 
-
     render() {
       return (
         <div className='login-form'>
@@ -70,7 +68,8 @@ export default connect(
                 <Segment stacked>
                   <div className="field">
                     <label>e-mail</label>
-                    <Form.Field error={this.errorCheck(this.errorNoEmail) || this.errorCheck(this.errorNoEmailAndPassword) || this.errorCheck(this.errorInvalidCredentials)}>
+                    <Form.Field
+                      error={this.errorCheck(this.errorNoEmail) || this.errorCheck(this.errorNoEmailAndPassword) || this.errorCheck(this.errorInvalidCredentials)}>
                       <input ref='email'
                              type='text'
                              name='email'
@@ -79,7 +78,8 @@ export default connect(
                   </div>
                   <div className="field">
                     <label>password</label>
-                    <Form.Field error={this.errorCheck(this.errorNoEmailAndPassword) || this.errorCheck(this.errorNoPassword) || this.errorCheck(this.errorInvalidCredentials)}>
+                    <Form.Field
+                      error={this.errorCheck(this.errorNoEmailAndPassword) || this.errorCheck(this.errorNoPassword) || this.errorCheck(this.errorInvalidCredentials)}>
                       <input ref='password'
                              type='password'
                              name='password'

@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3dbf1b03-8cfa-4387-9332-3d98f54b2a19" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/LogIn.js" afterPath="$PROJECT_DIR$/src/components/LogIn.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -67,8 +66,8 @@
       <file leaf-file-name="LogIn.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/LogIn.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="699">
-              <caret line="81" column="20" lean-forward="false" selection-start-line="81" selection-start-column="20" selection-end-line="81" selection-end-column="20" />
+            <state relative-caret-position="172">
+              <caret line="92" column="21" lean-forward="true" selection-start-line="92" selection-start-column="21" selection-end-line="92" selection-end-column="21" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -347,12 +346,12 @@
       <workItem from="1504866004408" duration="5442000" />
       <workItem from="1505113609153" duration="20799000" />
       <workItem from="1505200290634" duration="22381000" />
-      <workItem from="1505286034395" duration="9621000" />
+      <workItem from="1505286034395" duration="9916000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63172000" />
+    <option name="totallyTimeSpent" value="63467000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1279" height="709" extended-state="6" />
@@ -700,8 +699,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/LogIn.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="699">
-          <caret line="81" column="20" lean-forward="false" selection-start-line="81" selection-start-column="20" selection-end-line="81" selection-end-column="20" />
+        <state relative-caret-position="172">
+          <caret line="92" column="21" lean-forward="true" selection-start-line="92" selection-start-column="21" selection-end-line="92" selection-end-column="21" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
