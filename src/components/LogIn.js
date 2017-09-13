@@ -42,15 +42,18 @@ export default connect(
 
             userPasswordVerification && userTypeVerification ? this.props.getUsr(formData) : this.props.getUsr(null)
 
-            const errorMessage = userEmailVerification === [] || !userPasswordVerification || !userTypeVerification ? 'E-mail address or password incorrect. Please try again.' : null
+            const errorMessage = userEmailVerification === [] || (userEmailVerification.length > 0 && !userPasswordVerification) || !userPasswordVerification || !userTypeVerification ? 'E-mail address or password incorrect. Please try again.' : null
             console.log(errorMessage)
             errorMessage && this.props.getError(errorMessage) && setTimeout(() => this.props.getError(null), 5000)
 
-            const errorMessageEmailFieldEmpty = formData.email === "" ? 'E-mail is required.' : null
+            const errorMessageEmailFieldEmpty = formData.email === "" && formData.password !== "" ? 'E-mail is required.' : null
             errorMessageEmailFieldEmpty && this.props.getError(errorMessageEmailFieldEmpty) && setTimeout(() => this.props.getError(null), 5000)
 
-            const errorMessagePasswordFieldEmpty = formData.password === "" ? 'Password is required.' : null
+            const errorMessagePasswordFieldEmpty = formData.password === "" && formData.email !== "" ? 'Password is required.' : null
             errorMessagePasswordFieldEmpty && this.props.getError(errorMessagePasswordFieldEmpty) && setTimeout(() => this.props.getError(null), 5000)
+
+            const errorMessageEmailAndPasswordFieldEmpty = formData.password === "" && formData.email === "" ? 'E-mail and password are required.' : null
+            errorMessageEmailAndPasswordFieldEmpty && this.props.getError(errorMessageEmailAndPasswordFieldEmpty) && setTimeout(() => this.props.getError(null), 5000)
         }
 
 
