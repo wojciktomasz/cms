@@ -21,6 +21,12 @@ export default connect(
       this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    errorNoEmail = 'E-mail is required.'
+    errorNoPassword = 'Password is required.'
+    errorNoEmailAndPassword = 'E-mail and password are required.'
+    errorInvalidCredentials = 'E-mail address or password incorrect. Please try again.'
+    errorCheck = error => this.props.errorMessage === error
+
     handleSubmit(e) {
       e.preventDefault()
 
@@ -36,16 +42,16 @@ export default connect(
       userPasswordVerification && userTypeVerification ? this.props.getUsr(formData) : this.props.getUsr(null)
       const displayErrorFor = ms => setTimeout(() => this.props.getError(null), ms)
 
-      const errorMessage = userEmailVerification === [] || (userEmailVerification.length > 0 && !userPasswordVerification) || !userPasswordVerification || !userTypeVerification ? 'E-mail address or password incorrect. Please try again.' : null
+      const errorMessage = userEmailVerification === [] || (userEmailVerification.length > 0 && !userPasswordVerification) || !userPasswordVerification || !userTypeVerification ? this.errorInvalidCredentials : null
       errorMessage && this.props.getError(errorMessage) && displayErrorFor(5000)
 
-      const errorMessageEmailFieldEmpty = formData.email === "" && formData.password !== "" ? 'E-mail is required.' : null
+      const errorMessageEmailFieldEmpty = formData.email === "" && formData.password !== "" ? this.errorNoEmail : null
       errorMessageEmailFieldEmpty && this.props.getError(errorMessageEmailFieldEmpty) && displayErrorFor(5000)
 
-      const errorMessagePasswordFieldEmpty = formData.password === "" && formData.email !== "" ? 'Password is required.' : null
+      const errorMessagePasswordFieldEmpty = formData.password === "" && formData.email !== "" ? this.errorNoPassword : null
       errorMessagePasswordFieldEmpty && this.props.getError(errorMessagePasswordFieldEmpty) && displayErrorFor(5000)
 
-      const errorMessageEmailAndPasswordFieldEmpty = formData.password === "" && formData.email === "" ? 'E-mail and password are required.' : null
+      const errorMessageEmailAndPasswordFieldEmpty = formData.password === "" && formData.email === "" ? this.errorNoEmailAndPassword : null
       errorMessageEmailAndPasswordFieldEmpty && this.props.getError(errorMessageEmailAndPasswordFieldEmpty) && displayErrorFor(5000)
     }
 
@@ -64,7 +70,7 @@ export default connect(
                 <Segment stacked>
                   <div className="field">
                     <label>e-mail</label>
-                    <Form.Field error={this.props.errorMessage !== null}>
+                    <Form.Field error={this.errorCheck(this.errorNoEmail) || this.errorCheck(this.errorNoEmailAndPassword) || this.errorCheck(this.errorInvalidCredentials)}>
                       <input ref='email'
                              type='text'
                              name='email'
@@ -73,7 +79,7 @@ export default connect(
                   </div>
                   <div className="field">
                     <label>password</label>
-                    <Form.Field error={this.props.errorMessage !== null}>
+                    <Form.Field error={this.errorCheck(this.errorNoEmailAndPassword) || this.errorCheck(this.errorNoPassword) || this.errorCheck(this.errorInvalidCredentials)}>
                       <input ref='password'
                              type='password'
                              name='password'
