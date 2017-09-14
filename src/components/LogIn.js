@@ -26,8 +26,7 @@ export default connect(
     errorInvalidCredentials = 'E-mail address or password incorrect. Please try again.'
     errorCheck = error => this.props.errorMessage === error
 
-    handleSubmit(e) {
-      e.preventDefault()
+    handleSubmit = () => {
 
       const formData = {}
       for (const field in this.refs) {
