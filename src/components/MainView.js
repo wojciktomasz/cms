@@ -4,7 +4,7 @@ import { unauth } from '../reducers/logIn'
 import MainMenu from '../components/MainMenu'
 
 export default connect(
-  state => ({}),
+  null,
   dispatch => ({
     unauth: () => dispatch(unauth())
   })
@@ -13,9 +13,8 @@ export default connect(
     render() {
       return (
         <div>
-          <MainMenu/>
-          <h1>CMS</h1>
-            <button onClick={this.props.unauth}>Log Out</button>
+          <MainMenu logOut={this.props.unauth}/>
+          <h1 style={{marginTop: '5%'}}>CMS</h1>
         </div>
       )
     }
