@@ -20,7 +20,6 @@ const initialState = {
 export default function (state = initialState, action = {}) {
   switch (action.type) {
     case UNAUTH_USER:
-      console.log(state)
       return {
         ...state,
         userLoggedIn: null
