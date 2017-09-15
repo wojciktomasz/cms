@@ -4,6 +4,7 @@ import { getUsr } from '../reducers/logIn'
 import { getError } from "../reducers/errorMessage"
 import { connect } from 'react-redux'
 import { Button, Form, Grid, Segment, Message } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 export default connect(
   state => ({
@@ -16,8 +17,8 @@ export default connect(
 )(
   class LogIn extends React.Component {
     constructor(props) {
-      super(props);
-      this.handleSubmit = this.handleSubmit.bind(this);
+      super(props)
+      this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     errorNoEmail = 'E-mail is required.'
@@ -30,13 +31,14 @@ export default connect(
 
       const formData = {}
       for (const field in this.refs) {
-        formData[field] = this.refs[field].value;
+        formData[field] = this.refs[field].value
       }
 
       const userEmailVerification = users.filter(user => user.email === formData.email)
       const userPasswordVerification = userEmailVerification[0] && (userEmailVerification[0].password === formData.password)
       const userTypeVerification = userPasswordVerification && userEmailVerification[0].type === 'admin'
 
+      console.log(this.props.getUsr(formData))
       userPasswordVerification && userTypeVerification ? this.props.getUsr(formData) : this.props.getUsr(null)
       const displayErrorFor = ms => setTimeout(() => this.props.getError(null), ms)
 
@@ -51,6 +53,10 @@ export default connect(
 
       const errorMessageEmailAndPasswordFieldEmpty = formData.password === "" && formData.email === "" ? this.errorNoEmailAndPassword : null
       errorMessageEmailAndPasswordFieldEmpty && this.props.getError(errorMessageEmailAndPasswordFieldEmpty) && displayErrorFor(5000)
+
+    }
+    loadMain = () => {
+      window.location = '/main'
     }
 
     render() {
@@ -85,7 +91,9 @@ export default connect(
                              placeholder='Enter password'/>
                     </Form.Field>
                   </div>
-                  <Button color='teal' fluid size='large' type='submit'>Login</Button>
+                  <Link to='/main'>
+                  <Button color='teal' fluid size='large' type='submit' >Login</Button>
+                  </Link>
                 </Segment>
               </Form>
               {this.props.errorMessage &&

@@ -11,7 +11,7 @@ export default connect(
     render() {
       return (
         <div>
-          <Redirect to={this.props.userLoggedIn !== null ? '/main' : '/login'}/>
+          {/*<Redirect to={this.props.userLoggedIn !== null ? '/main' : '/login'}/>*/}
         </div>
       )
     }
