@@ -6,28 +6,24 @@ import { Link, Route } from 'react-router-dom'
 class MainMenu extends React.Component {
 
     state = {
-      activeItem: false
+      activeItem: 'dashboard'
     }
 
-  handleClick = () => {
-    this.state.activeItem === false ?
+  handleClick = item => () =>
       this.setState({
-        activeItem: true
+        activeItem: item
       })
-      :
-      this.setState({
-        activeItem: false
-      })
-  }
+
     render() {
       return (
         <div>
           <Menu fixed='top' inverted>
             <Container>
+              <Menu.Item className={this.state.activeItem === 'dashboard' ? 'blue active item' : ''} onClick={this.handleClick('dashboard')}>Dashboard</Menu.Item>
               <Link to='/main/posts'>
-              <Menu.Item className={this.state.activeItem ? 'active item' : ''} onClick={this.handleClick}>Posts</Menu.Item>
+              <Menu.Item name='posts' className={this.state.activeItem === 'posts' ? 'blue active item' : ''} onClick={this.handleClick('posts')}>Posts</Menu.Item>
               </Link>
-              <Menu.Item className={this.state.activeItem ? 'active item' : ''} onClick={this.handleClick}>Users</Menu.Item>
+              <Menu.Item className={this.state.activeItem === 'users' ? 'blue active item' : ''} onClick={this.handleClick('users')}>Users</Menu.Item>
               <div className='right menu'>
                 <Menu.Item onClick={this.props.logOut} >Log Out</Menu.Item>
               </div>

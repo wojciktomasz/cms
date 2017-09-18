@@ -84,7 +84,7 @@ class LogIn extends React.Component {
                            placeholder='Enter password'/>
                   </Form.Field>
                 </div>
-                <Button color='teal' fluid size='large' type='submit' >Login</Button>
+                <Button color='blue' fluid size='large' type='submit' >Login</Button>
               </Segment>
             </Form>
             {this.props.errorMessage &&
