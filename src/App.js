@@ -6,6 +6,7 @@ import LogIn from './components/LogIn'
 import { Route } from 'react-router-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
 import PrivateRoute from './components/PrivateRoute'
+import Authorization from './containers/Authorization'
 
 class App extends Component {
   render() {
@@ -14,7 +15,7 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div>
-            <Route exact path='/' component={LogIn} />
+            <Authorization path='/'/>
             <Route exact path='/login' component={LogIn}/>
             <Route path='/main' component={PrivateRoute(MainView)}/>
           </div>

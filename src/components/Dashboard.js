@@ -5,10 +5,10 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div>
-        <h1>Dash</h1>
-        <h1>Posts</h1>
-        <h1>Posts</h1>
-        <h1>Dash</h1>
+        <h1>Dashboard</h1>
+        <h1>Dashboard</h1>
+        <h1>Dashboard</h1>
+        <h1>Dashboard</h1>
       </div>
     )
   }
