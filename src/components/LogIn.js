@@ -1,4 +1,3 @@
-import users from '../data/users.json'
 import React from 'react'
 import { getUsr } from '../reducers/logIn'
 import { getError } from "../reducers/errorMessage"
@@ -6,6 +5,7 @@ import { connect } from 'react-redux'
 import { Button, Form, Grid, Segment, Message } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 import { errors } from '../helpers/errorMessages'
+import { verifyFormData } from '../helpers/verifyUser'
 
 
 class LogIn extends React.Component {
@@ -18,33 +18,14 @@ class LogIn extends React.Component {
 
   handleSubmit = () => {
 
-    const formData = {}
+    let formData = {}
     for (const field in this.refs) {
       formData[field] = this.refs[field].value
     }
 
-    const userEmailVerification = users.filter(user => user.email === formData.email)
-    const userPasswordVerification = userEmailVerification[0] && (userEmailVerification[0].password === formData.password)
-    const userTypeVerification = userPasswordVerification && userEmailVerification[0].type === 'admin'
-
-    userPasswordVerification && userTypeVerification ? this.props.getUsr(formData) : this.props.getUsr(null)
-    userPasswordVerification && userTypeVerification && this.loadMain()
-
-    const displayErrorFor = ms => setTimeout(() => this.props.getError(null), ms)
-
-    const errorMessage = userEmailVerification === [] || (userEmailVerification.length > 0 && !userPasswordVerification) || !userPasswordVerification || !userTypeVerification ? errors.errorInvalidCredentials : null
-    errorMessage && this.props.getError(errorMessage) && displayErrorFor(5000)
-
-    const errorMessageEmailFieldEmpty = formData.email === "" && formData.password !== "" ? errors.errorNoEmail : null
-    errorMessageEmailFieldEmpty && this.props.getError(errorMessageEmailFieldEmpty) && displayErrorFor(5000)
-
-    const errorMessagePasswordFieldEmpty = formData.password === "" && formData.email !== "" ? errors.errorNoPassword : null
-    errorMessagePasswordFieldEmpty && this.props.getError(errorMessagePasswordFieldEmpty) && displayErrorFor(5000)
-
-    const errorMessageEmailAndPasswordFieldEmpty = formData.password === "" && formData.email === "" ? errors.errorNoEmailAndPassword : null
-    errorMessageEmailAndPasswordFieldEmpty && this.props.getError(errorMessageEmailAndPasswordFieldEmpty) && displayErrorFor(5000)
-
+    verifyFormData(this.props.getUsr, this.props.getError, this.loadMain, formData)
   }
+
   loadMain = () => {
     this.props.history.push('/main')
   }
