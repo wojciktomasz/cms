@@ -4,17 +4,14 @@ import { getError } from "../reducers/errorMessage"
 import { connect } from 'react-redux'
 import { Button, Form, Grid, Segment, Message } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
-import { errors } from '../helpers/errorMessages'
 import { verifyFormInput } from '../helpers/verifyFormInput'
-
+import { errorOnEmailField, errorOnPasswordField } from '../helpers/checkForErrorMessages'
 
 class LogIn extends React.Component {
   constructor(props) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-
-  errorCheck = error => this.props.errorMessage === error
 
   handleSubmit = () => {
 
@@ -45,7 +42,7 @@ class LogIn extends React.Component {
                 <div className="field">
                   <label>e-mail</label>
                   <Form.Field
-                    error={this.errorCheck(errors.errorNoEmail) || this.errorCheck(errors.errorNoEmailAndPassword) || this.errorCheck(errors.errorInvalidCredentials)}>
+                    error={errorOnEmailField(this.props.errorMessage)}>
                     <input ref='email'
                            type='text'
                            name='email'
@@ -55,7 +52,7 @@ class LogIn extends React.Component {
                 <div className="field">
                   <label>password</label>
                   <Form.Field
-                    error={this.errorCheck(errors.errorNoEmailAndPassword) || this.errorCheck(errors.errorNoPassword) || this.errorCheck(errors.errorInvalidCredentials)}>
+                    error={errorOnPasswordField(this.props.errorMessage)}>
                     <input ref='password'
                            type='password'
                            name='password'
