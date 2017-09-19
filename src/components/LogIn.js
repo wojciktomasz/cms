@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { Button, Form, Grid, Segment, Message } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 import { errors } from '../helpers/errorMessages'
-import { verifyFormData } from '../helpers/verifyUser'
+import { verifyFormInput } from '../helpers/verifyFormInput'
 
 
 class LogIn extends React.Component {
@@ -23,7 +23,7 @@ class LogIn extends React.Component {
       formData[field] = this.refs[field].value
     }
 
-    verifyFormData(this.props.getUsr, this.props.getError, this.loadMain, formData)
+    verifyFormInput(this.props.getUsr, this.props.getError, this.loadMain, formData)
   }
 
   loadMain = () => {

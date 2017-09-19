@@ -1,16 +1,6 @@
-import users from '../data/users.json'
 import { errors } from '../helpers/errorMessages'
 
-export const verifyFormData = (dispatchGetUser, dispatchGetError, loadMain, formData) => {
-
-  console.log(formData)
-
-  const userEmailVerification = users.filter(user => user.email === formData.email)
-  const userPasswordVerification = userEmailVerification[0] && (userEmailVerification[0].password === formData.password)
-  const userTypeVerification = userPasswordVerification && userEmailVerification[0].type === 'admin'
-
-  userPasswordVerification && userTypeVerification ? dispatchGetUser(formData) : dispatchGetUser(null)
-  userPasswordVerification && userTypeVerification && loadMain()
+export const displayErrorMessages = (userEmailVerification, userPasswordVerification, userTypeVerification, dispatchGetError, formData) => {
 
   const displayErrorFor = ms => setTimeout(() => dispatchGetError(null), ms)
 
@@ -25,5 +15,5 @@ export const verifyFormData = (dispatchGetUser, dispatchGetError, loadMain, form
 
   const errorMessageEmailAndPasswordFieldEmpty = formData.password === "" && formData.email === "" ? errors.errorNoEmailAndPassword : null
   errorMessageEmailAndPasswordFieldEmpty && dispatchGetError(errorMessageEmailAndPasswordFieldEmpty) && displayErrorFor(5000)
-}
 
+}
