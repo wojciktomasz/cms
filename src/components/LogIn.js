@@ -1,9 +1,5 @@
 import React from 'react'
-import { getUsr } from '../reducers/logIn'
-import { getError } from "../reducers/errorMessage"
-import { connect } from 'react-redux'
 import { Button, Form, Grid, Segment, Message } from 'semantic-ui-react'
-import { withRouter } from 'react-router-dom'
 import { verifyFormInput } from '../helpers/verifyFormInput'
 import { errorOnEmailField, errorOnPasswordField } from '../helpers/checkForErrorMessages'
 
@@ -59,7 +55,7 @@ class LogIn extends React.Component {
                            placeholder='Enter password'/>
                   </Form.Field>
                 </div>
-                <Button color='blue' fluid size='large' type='submit' >Login</Button>
+                <Button color='blue' fluid size='large' type='submit'>Login</Button>
               </Segment>
             </Form>
             {this.props.errorMessage &&
@@ -75,12 +71,4 @@ class LogIn extends React.Component {
   }
 }
 
-export default connect(
-  state => ({
-    errorMessage: state.errorMessage.message
-  }),
-  dispatch => ({
-    getUsr: data => dispatch(getUsr(data)),
-    getError: data => dispatch(getError(data))
-  })
-)(withRouter(LogIn))
+export default LogIn

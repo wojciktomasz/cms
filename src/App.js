@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { Provider } from 'react-redux'
 import MainView from './containers/MainView'
-import LogIn from './components/LogIn'
+import LogIn from './containers/LogIn'
 import { Route } from 'react-router-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
 import PrivateRoute from './components/PrivateRoute'
@@ -10,6 +10,7 @@ import Authorization from './containers/Authorization'
 
 class App extends Component {
   render() {
+
     const {store} = this.props
 
     return (
