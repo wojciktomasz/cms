@@ -5,6 +5,7 @@ import { getError } from "../reducers/errorMessage"
 import { connect } from 'react-redux'
 import { Button, Form, Grid, Segment, Message } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
+import { errors } from '../helpers/errorMessages'
 
 
 class LogIn extends React.Component {
@@ -13,10 +14,6 @@ class LogIn extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  errorNoEmail = 'E-mail is required.'
-  errorNoPassword = 'Password is required.'
-  errorNoEmailAndPassword = 'E-mail and password are required.'
-  errorInvalidCredentials = 'E-mail address or password incorrect. Please try again.'
   errorCheck = error => this.props.errorMessage === error
 
   handleSubmit = () => {
@@ -35,16 +32,16 @@ class LogIn extends React.Component {
 
     const displayErrorFor = ms => setTimeout(() => this.props.getError(null), ms)
 
-    const errorMessage = userEmailVerification === [] || (userEmailVerification.length > 0 && !userPasswordVerification) || !userPasswordVerification || !userTypeVerification ? this.errorInvalidCredentials : null
+    const errorMessage = userEmailVerification === [] || (userEmailVerification.length > 0 && !userPasswordVerification) || !userPasswordVerification || !userTypeVerification ? errors.errorInvalidCredentials : null
     errorMessage && this.props.getError(errorMessage) && displayErrorFor(5000)
 
-    const errorMessageEmailFieldEmpty = formData.email === "" && formData.password !== "" ? this.errorNoEmail : null
+    const errorMessageEmailFieldEmpty = formData.email === "" && formData.password !== "" ? errors.errorNoEmail : null
     errorMessageEmailFieldEmpty && this.props.getError(errorMessageEmailFieldEmpty) && displayErrorFor(5000)
 
-    const errorMessagePasswordFieldEmpty = formData.password === "" && formData.email !== "" ? this.errorNoPassword : null
+    const errorMessagePasswordFieldEmpty = formData.password === "" && formData.email !== "" ? errors.errorNoPassword : null
     errorMessagePasswordFieldEmpty && this.props.getError(errorMessagePasswordFieldEmpty) && displayErrorFor(5000)
 
-    const errorMessageEmailAndPasswordFieldEmpty = formData.password === "" && formData.email === "" ? this.errorNoEmailAndPassword : null
+    const errorMessageEmailAndPasswordFieldEmpty = formData.password === "" && formData.email === "" ? errors.errorNoEmailAndPassword : null
     errorMessageEmailAndPasswordFieldEmpty && this.props.getError(errorMessageEmailAndPasswordFieldEmpty) && displayErrorFor(5000)
 
   }
@@ -67,7 +64,7 @@ class LogIn extends React.Component {
                 <div className="field">
                   <label>e-mail</label>
                   <Form.Field
-                    error={this.errorCheck(this.errorNoEmail) || this.errorCheck(this.errorNoEmailAndPassword) || this.errorCheck(this.errorInvalidCredentials)}>
+                    error={this.errorCheck(errors.errorNoEmail) || this.errorCheck(errors.errorNoEmailAndPassword) || this.errorCheck(errors.errorInvalidCredentials)}>
                     <input ref='email'
                            type='text'
                            name='email'
@@ -77,7 +74,7 @@ class LogIn extends React.Component {
                 <div className="field">
                   <label>password</label>
                   <Form.Field
-                    error={this.errorCheck(this.errorNoEmailAndPassword) || this.errorCheck(this.errorNoPassword) || this.errorCheck(this.errorInvalidCredentials)}>
+                    error={this.errorCheck(errors.errorNoEmailAndPassword) || this.errorCheck(errors.errorNoPassword) || this.errorCheck(errors.errorInvalidCredentials)}>
                     <input ref='password'
                            type='password'
                            name='password'
