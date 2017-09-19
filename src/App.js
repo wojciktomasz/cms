@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Provider } from 'react-redux'
-import MainView from './components/MainView'
+import MainView from './containers/MainView'
 import LogIn from './components/LogIn'
 import { Route } from 'react-router-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
@@ -16,7 +16,7 @@ class App extends Component {
           <div>
             <Route exact path='/' component={LogIn} />
             <Route exact path='/login' component={LogIn}/>
-            <PrivateRoute path='/main' component={MainView}/>
+            <Route path='/main' component={PrivateRoute(MainView)}/>
           </div>
         </Router>
       </Provider>

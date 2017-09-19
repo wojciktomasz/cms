@@ -1,22 +1,30 @@
-import React from 'react'
-import { Route, Redirect } from 'react-router-dom'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 
-const PrivateRoute = ({ component: Component, userLoggedIn, ...rest }) => (
-  <Route {...rest} render={props => (
-    userLoggedIn ? (
-      <Component {...props}/>
-    ) : (
-      <Redirect to={{
-        pathname: '/login'
-      }}/>
-    )
-  )}/>
-)
+export default function (ComposedComponent) {
+  class Authentication extends Component {
 
-export default connect(
-  state => ({
-    userLoggedIn: state.logIn.userLoggedIn
-  })
-)(PrivateRoute)
+    componentWillMount() {
+      if (!this.props.userLoggedIn) {
+        this.props.history.push("/login")
+      }
+    }
+
+    componentWillUpdate(nextProps) {
+      if (!nextProps.userLoggedIn) {
+        this.props.history.push("/login")
+      }
+    }
+
+    render() {
+      return <ComposedComponent {...this.props} />
+    }
+  }
+
+  return connect(
+    state => ({
+      userLoggedIn: state.logIn.userLoggedIn
+    }))(withRouter(Authentication))
+}

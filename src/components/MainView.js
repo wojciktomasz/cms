@@ -1,22 +1,21 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { unauth } from '../reducers/logIn'
-import MainMenu from '../components/MainMenu'
+import MainMenu from '../containers/MainMenu'
+import { Route } from 'react-router'
+import Users from '../components/Users'
+import Posts from '../components/Posts'
 
-export default connect(
-  null,
-  dispatch => ({
-    unauth: () => dispatch(unauth())
-  })
-)(
-  class MainView extends React.Component {
-    render() {
-      return (
-        <div>
-          <MainMenu logOut={this.props.unauth}/>
-          <h1 style={{marginTop: '5%'}}>CMS</h1>
-        </div>
-      )
-    }
+
+class MainView extends React.Component {
+  render() {
+    return (
+      <div>
+        <MainMenu/>
+        <h1 style={{marginTop: '5%'}}>CMS</h1>
+        <Route path='/main/posts' component={Posts}/>
+        <Route path='/main/users' component={Users}/>
+      </div>
+    )
   }
-)
+}
+
+export default MainView
