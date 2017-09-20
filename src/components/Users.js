@@ -1,6 +1,8 @@
 import React from 'react'
 import users from '../data/users.json'
-import { Table, Grid } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
+import ReactTable from "react-table"
+import "react-table/react-table.css"
 
 
 class Users extends React.Component {
@@ -14,32 +16,33 @@ class Users extends React.Component {
           verticalAlign='middle'
         >
           <Grid.Column style={{maxWidth: 850}}>
-            <Table className="ui celled padded table" style={{marginTop: '10%'}}>
-              <thead>
-              <tr>
-                <th className="single line ui center aligned">Last name</th>
-                <th className="single line ui center aligned">First name</th>
-                <th className="single line ui center aligned">e-mail</th>
-                <th className="single line ui center aligned">type</th>
-              </tr>
-              </thead>
-              <tbody>
+            <ReactTable
+              data={users}
+              columns={[
                 {
-                  users
-                    .sort((a, b) => a.email.localeCompare(b.email))
-                    .map(
-                    user => (
-                      <tr key={user.email} className="ui center aligned">
-                        <td>{user.LastName}</td>
-                        <td>{user.name}</td>
-                      <td>{user.email}</td>
-                        <td>{user.type}</td>
-                      </tr>
-                    )
-                  )
+                  Header: "Name",
+                  accessor: "name"
+                },
+                {
+                  Header: "Last name",
+                  accessor: "LastName"
+                },
+                {
+                  Header: "E-mail",
+                  accessor: "email"
+                },
+                {
+                  Header: "Type",
+                  accessor: "type"
                 }
-              </tbody>
-            </Table>
+              ]}
+              sorted={[{
+                id: 'email',
+                desc: false
+              }]}
+              defaultPageSize={10}
+              className="-striped -highlight"
+              style={{marginTop: '10%'}}/>
           </Grid.Column>
         </Grid>
       </div>

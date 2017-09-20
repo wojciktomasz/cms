@@ -40,5 +40,40 @@
     "LastName": "Serdela",
     "password": "user2",
     "type": "user"
+  },
+  {
+    "email": "dddd@desmart.com",
+    "name": "Alicja",
+    "LastName": "Serdelicja",
+    "password": "user2",
+    "type": "user"
+  },
+  {
+    "email": "cccc@desmart.com",
+    "name": "Bela",
+    "LastName": "Serdela",
+    "password": "user2",
+    "type": "user"
+  },
+  {
+    "email": "cccc@desmart.com",
+    "name": "Bela",
+    "LastName": "Serdela",
+    "password": "user2",
+    "type": "user"
+  },
+  {
+    "email": "cccc@desmart.com",
+    "name": "Bela",
+    "LastName": "Serdela",
+    "password": "user2",
+    "type": "user"
+  },
+  {
+    "email": "cccc@desmart.com",
+    "name": "Bela",
+    "LastName": "Serdela",
+    "password": "user2",
+    "type": "user"
   }
 ]
