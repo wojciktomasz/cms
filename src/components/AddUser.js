@@ -1,14 +1,11 @@
 import React from 'react'
 import users from '../data/users.json'
 import { Button, Form, Grid, Segment } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { addUser } from '../reducers/addUser'
 
 
 class AddUsers extends React.Component {
-
-  state = {
-    data: users,
-    search: ''
-  }
 
   constructor(props) {
     super(props)
@@ -21,7 +18,7 @@ class AddUsers extends React.Component {
     for (const field in this.refs) {
       formData[field] = this.refs[field].value
     }
-    console.log(formData)
+    this.props.addUser(formData)
   }
   render() {
     return (
@@ -68,4 +65,9 @@ class AddUsers extends React.Component {
   }
 }
 
-export default AddUsers
+export default connect(
+  state => ({}),
+  dispatch => ({
+    addUser: data => dispatch(addUser(data))
+  })
+)(AddUsers)
