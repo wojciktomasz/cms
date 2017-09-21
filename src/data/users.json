@@ -2,77 +2,77 @@
   {
     "email": "admin@desmart.com",
     "name": "Tomasz",
-    "LastName": "Wójcik",
+    "lastName": "Wójcik",
     "password": "admin",
     "type": "admin"
   },
   {
     "email": "user@desmart.com",
     "name": "Andrzej",
-    "LastName": "Kowalski",
+    "lastName": "Kowalski",
     "password": "user",
     "type": "user"
   },
   {
     "email": "user2@desmart.com",
     "name": "Piotr",
-    "LastName": "Nowak",
+    "lastName": "Nowak",
     "password": "user2",
     "type": "user"
   },
   {
     "email": "aaaa@desmart.com",
     "name": "Atom",
-    "LastName": "Nowak",
+    "lastName": "Nowak",
     "password": "user2",
     "type": "user"
   },
   {
     "email": "bbbb@desmart.com",
     "name": "Ala",
-    "LastName": "Nowakowska",
+    "lastName": "Nowakowska",
     "password": "user2",
     "type": "user"
   },
   {
     "email": "cccc@desmart.com",
     "name": "Bela",
-    "LastName": "Serdela",
+    "lastName": "Serdela",
     "password": "user2",
     "type": "user"
   },
   {
     "email": "dddd@desmart.com",
     "name": "Alicja",
-    "LastName": "Serdelicja",
+    "lastName": "Serdelicja",
     "password": "user2",
     "type": "user"
   },
   {
     "email": "cccc@desmart.com",
     "name": "Bela",
-    "LastName": "Serdela",
+    "lastName": "Serdela",
     "password": "user2",
     "type": "user"
   },
   {
     "email": "cccc@desmart.com",
     "name": "Bela",
-    "LastName": "Serdela",
+    "lastName": "Serdela",
     "password": "user2",
     "type": "user"
   },
   {
     "email": "cccc@desmart.com",
     "name": "Bela",
-    "LastName": "Serdela",
+    "lastName": "Serdela",
     "password": "user2",
     "type": "user"
   },
   {
     "email": "cccc@desmart.com",
     "name": "Bela",
-    "LastName": "Serdela",
+    "lastName": "Serdela",
     "password": "user2",
     "type": "user"
   }

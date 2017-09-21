@@ -3,6 +3,7 @@ import users from '../data/users.json'
 import { Grid } from 'semantic-ui-react'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
+import { filteredUsers } from '../helpers/filterUsers'
 
 class Users extends React.Component {
 
@@ -16,7 +17,7 @@ class Users extends React.Component {
 
   render() {
     let data = this.state.data
-    let dataToDisplay = data.filter(row => row.email.includes(this.state.search) || row.name.includes(this.state.search) || row.LastName.includes(this.state.search) || row.type.includes(this.state.search))
+    let dataToDisplay = filteredUsers(data, this.state.search)
     return (
       <div>
         <Grid
@@ -42,7 +43,7 @@ class Users extends React.Component {
                 },
                 {
                   Header: 'Last name',
-                  accessor: 'LastName'
+                  accessor: 'lastName'
                 },
                 {
                   Header: 'E-mail',
