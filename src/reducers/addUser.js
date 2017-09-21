@@ -1,5 +1,3 @@
-import users from '../data/users.json'
-
 const ADD_USER = 'add_user'
 
 export const addUser = data => ({
@@ -8,7 +6,6 @@ export const addUser = data => ({
 })
 
 const initialState = {
-  users,
   userToAdd: null
 }
 

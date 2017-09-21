@@ -4,6 +4,7 @@ import { Grid } from 'semantic-ui-react'
 import ReactTable from 'react-table'
 import { filteredUsers } from '../helpers/filterUsers'
 import AddUsers from '../components/AddUser'
+import { connect } from 'react-redux'
 
 class Users extends React.Component {
 
@@ -15,6 +16,7 @@ class Users extends React.Component {
   render() {
     let data = this.state.data
     let dataToDisplay = filteredUsers(data, this.state.search)
+    //let dataToDisplayAdd = dataToDisplay.push(this.props.userToAdd)
     return (
       <div>
         <Grid
@@ -59,6 +61,7 @@ class Users extends React.Component {
               className='-striped -highlight'
               style={{marginTop: '0.5%'}}
             />
+            {console.log(this.props.userToAdd)}
             <AddUsers/>
           </Grid.Column>
         </Grid>
@@ -67,4 +70,9 @@ class Users extends React.Component {
   }
 }
 
-export default Users
+export default connect(
+  state => ({
+    userToAdd: state.addUser.userToAdd
+  }),
+  dispatch => ({})
+)(Users)
