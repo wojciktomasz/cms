@@ -7,6 +7,7 @@ import { Route } from 'react-router-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
 import PrivateRoute from './components/PrivateRoute'
 import Authorization from './containers/Authorization'
+import 'react-table/react-table.css'
 
 class App extends Component {
   render() {

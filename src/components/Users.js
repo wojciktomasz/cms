@@ -2,7 +2,6 @@ import React from 'react'
 import users from '../data/users.json'
 import { Grid } from 'semantic-ui-react'
 import ReactTable from 'react-table'
-import 'react-table/react-table.css'
 import { filteredUsers } from '../helpers/filterUsers'
 
 class Users extends React.Component {

@@ -1,7 +1,12 @@
-export const filteredUsers = (data, query) => data.filter(user => user.email.includes(query) ||
-  user.name.includes(query) ||
-  user.name.toLowerCase().includes(query) ||
-  user.lastName.includes(query) ||
-  user.lastName.toLowerCase().includes(query) ||
-  user.type.includes(query))
+export const filteredUsers = (users, query) => {
+
+  const lowQuery = query.toLowerCase()
+  const objectCheck = (key, object) => object[key].toLowerCase().includes(lowQuery)
+
+  return users.filter(user =>
+    objectCheck('email', user)  ||
+    objectCheck('name', user) ||
+    objectCheck('lastName', user) ||
+    objectCheck('type', user))
+}
 
