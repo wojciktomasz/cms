@@ -3,16 +3,14 @@ import users from '../data/users.json'
 import { Grid } from 'semantic-ui-react'
 import ReactTable from 'react-table'
 import { filteredUsers } from '../helpers/filterUsers'
+import AddUsers from '../components/AddUser'
 
 class Users extends React.Component {
 
-  constructor() {
-    super()
-    this.state = {
+  state = {
       data: users,
       search: ''
     }
-  }
 
   render() {
     let data = this.state.data
@@ -61,6 +59,7 @@ class Users extends React.Component {
               className='-striped -highlight'
               style={{marginTop: '0.5%'}}
             />
+            <AddUsers/>
           </Grid.Column>
         </Grid>
       </div>
