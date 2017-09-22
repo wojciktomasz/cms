@@ -1,3 +1,3 @@
-export const dataPushed = (arrayOfUsers, userObject) => {
+export const addDataToDisplay = (arrayOfUsers, userObject) => {
   return arrayOfUsers.concat(userObject)
 }

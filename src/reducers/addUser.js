@@ -6,7 +6,7 @@ export const addUser = data => ({
 })
 
 const initialState = {
-  userToAdd: null
+  userToAdd: []
 }
 
 export default function (state = initialState, action = {}) {
@@ -14,7 +14,7 @@ export default function (state = initialState, action = {}) {
     case ADD_USER:
       return {
         ...state,
-        userToAdd: action.data
+        userToAdd: state.userToAdd.concat(action.data)
       }
     default:
       return state
