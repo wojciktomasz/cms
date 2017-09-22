@@ -5,6 +5,7 @@ import ReactTable from 'react-table'
 import { filteredUsers } from '../helpers/filterUsers'
 import AddUsers from '../components/AddUser'
 import { connect } from 'react-redux'
+import { dataPushed } from '../helpers/addDataToDisplay'
 
 class Users extends React.Component {
 
@@ -16,7 +17,8 @@ class Users extends React.Component {
   render() {
     let data = this.state.data
     let dataToDisplay = filteredUsers(data, this.state.search)
-    //let dataToDisplayAdd = dataToDisplay.push(this.props.userToAdd)
+    let newData = this.props.userToAdd !== null ? dataPushed(dataToDisplay, this.props.userToAdd) : dataToDisplay
+
     return (
       <div>
         <Grid
@@ -34,7 +36,7 @@ class Users extends React.Component {
               <i className='search icon'/>
             </div>
             <ReactTable
-              data={dataToDisplay}
+              data={newData}
               columns={[
                 {
                   Header: 'Name',

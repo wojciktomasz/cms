@@ -48,6 +48,11 @@ class AddUsers extends React.Component {
                     />
                   </Form.Field>
                   <Form.Field>
+                    <input placeholder='Enter password'
+                           ref='password'
+                    />
+                  </Form.Field>
+                  <Form.Field>
                     <input placeholder='Enter type'
                            ref='type'
                     />
