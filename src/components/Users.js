@@ -16,8 +16,8 @@ class Users extends React.Component {
 
   render() {
     let data = this.state.data
-    let dataFiltered = filteredUsers(data, this.state.search)
-    let dataToDisplay = this.props.userToAdd !== null ? addDataToDisplay(dataFiltered, this.props.userToAdd) : dataFiltered
+    let dataWithAddedUsers = addDataToDisplay(data, this.props.userToAdd)
+    let dataFiltered = filteredUsers(dataWithAddedUsers, this.state.search)
 
     return (
       <div>
@@ -36,7 +36,7 @@ class Users extends React.Component {
               <i className='search icon'/>
             </div>
             <ReactTable
-              data={dataToDisplay}
+              data={dataFiltered}
               columns={[
                 {
                   Header: 'Name',

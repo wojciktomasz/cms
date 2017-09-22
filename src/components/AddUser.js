@@ -57,8 +57,10 @@ class AddUsers extends React.Component {
                            ref='type'
                     />
                   </Form.Field>
-
+                </div>
+                <div className="equal width fields">
                   <Button color='blue' fluid size='medium' type='submit'>Add user</Button>
+                  <Button color='blue' fluid size='medium' type='reset'>Clear Form</Button>
                 </div>
               </Segment>
             </Form>
