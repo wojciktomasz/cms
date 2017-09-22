@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Grid, Segment, Dropdown } from 'semantic-ui-react'
+import { Button, Form, Grid, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { addUser } from '../reducers/addUser'
 
@@ -11,6 +11,10 @@ class AddUsers extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  state = {
+    userAdded: false
+  }
+
   handleSubmit = () => {
 
     let formData = {}
@@ -18,13 +22,18 @@ class AddUsers extends React.Component {
       formData[field] = this.refs[field].value
     }
     this.props.addUser(formData)
+    this.setState({
+      userAdded: true
+    })
+  }
+
+  handleClearForm = () => {
+    this.setState({
+      userAdded: false
+    })
   }
 
   render() {
-    const userTypeDropDownOptions = [
-      {value: 'user', text: 'user'},
-      {value: 'admin', text: 'admin'},
-    ]
     return (
       <div>
         <Grid
@@ -33,6 +42,9 @@ class AddUsers extends React.Component {
           verticalAlign='middle'
         >
           <Grid.Column style={{maxWidth: 850}}>
+            {this.state.userAdded &&
+            <div className='ui blue segment' style={{marginTop: '1%'}}>New User Added</div>
+            }
             <Form onSubmit={this.handleSubmit} className='ui form' size='large'
                   style={{marginTop: '1%'}}>
               <Segment style={{paddingBottom: 0}} stacked>
@@ -81,22 +93,22 @@ class AddUsers extends React.Component {
                     </Form.Field>
                   </div>
                 </div>
-                  <div className='equal width fields'>
-                    <Button color='blue' fluid size='medium' type='submit'>Add new user</Button>
-                    <Button color='blue' fluid size='medium' type='reset'>Clear Form</Button>
-                  </div>
+                <div className='equal width fields'>
+                  <Button color='blue' fluid size='medium' type='submit'>Add new user</Button>
+                  <Button color='blue' fluid size='medium' type='reset' onClick={this.handleClearForm}>Clear Form</Button>
+                </div>
               </Segment>
             </Form>
           </Grid.Column>
         </Grid>
       </div>
-  )
+    )
   }
-  }
+}
 
-  export default connect(
+export default connect(
   state => ({}),
   dispatch => ({
     addUser: data => dispatch(addUser(data))
   })
-  )(AddUsers)
+)(AddUsers)
