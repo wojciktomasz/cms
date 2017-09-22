@@ -5,13 +5,13 @@ import persistState from 'redux-localstorage'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 export default initialState => {
-    return createStore(
-        reducers,
-        initialState,
-        composeEnhancers(
-            applyMiddleware(
-                thunk
-            ),
-            persistState(['logIn'], { key: 'login'})
-        ))
+  return createStore(
+    reducers,
+    initialState,
+    composeEnhancers(
+      applyMiddleware(
+        thunk
+      ),
+      persistState(['logIn'], {key: 'login'})
+    ))
 }

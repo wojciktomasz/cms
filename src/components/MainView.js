@@ -1,26 +1,22 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { unauth } from '../reducers/logIn'
+import MainMenu from '../containers/MainMenu'
+import { Route } from 'react-router'
+import Users from '../components/Users'
+import Posts from '../components/Posts'
+import Dashboard from '../components/Dashboard'
 
-export default connect(
-    state => ({
-        authenticated: state.logIn.authenticated
-    }),
-    dispatch => ({
-        unauth: () => dispatch(unauth())
-    })
-)(
-    class MainView extends React.Component {
 
-        render() {
-            console.log(this.props.authenticated)
+class MainView extends React.Component {
+  render() {
+    return (
+      <div>
+        <MainMenu/>
+        <Route exact path='/main' component={Dashboard}/>
+        <Route path='/main/posts' component={Posts}/>
+        <Route path='/main/users' component={Users}/>
+      </div>
+    )
+  }
+}
 
-            return (
-                <div>
-                    <h1>CMS</h1>
-                    <button onClick={this.props.unauth}>Log Out</button>
-                </div>
-            )
-        }
-    }
-)
+export default MainView

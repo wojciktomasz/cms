@@ -1,36 +1,36 @@
 import users from '../data/users.json'
 
-const AUTH_USER = 'auth_user'
 const UNAUTH_USER = 'unauth_user'
-
-export const auth = () => ({
-    type: AUTH_USER
-})
+const GET_USER = 'get_user'
 
 export const unauth = () => ({
-    type: UNAUTH_USER
+  type: UNAUTH_USER
 })
 
+export const getUsr = data => ({
+  type: GET_USER,
+  data
+})
 
 const initialState = {
-    users,
-    authenticated: false
+  users,
+  userLoggedIn: null
 }
-
 
 export default function (state = initialState, action = {}) {
-    switch(action.type) {
-        case AUTH_USER:
-            return {
-                ...state,
-                authenticated: true
-            }
-        case UNAUTH_USER:
-            return {
-                ...state,
-                authenticated: false
-            }
-        default:
-            return state
-    }
+  switch (action.type) {
+    case UNAUTH_USER:
+      return {
+        ...state,
+        userLoggedIn: null
+      }
+    case GET_USER:
+      return {
+        ...state,
+        userLoggedIn: action.data
+      }
+    default:
+      return state
+  }
 }
+
