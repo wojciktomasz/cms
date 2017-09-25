@@ -1,6 +1,7 @@
 import { displayErrorMessagesAddUSer } from '../helpers/displayErrorMessagesAddUser'
 import { errors } from '../helpers/errorMessages'
 import { displayErrorFor } from '../helpers/displayErrorFor'
+import users from '../data/users.json'
 
 export const verifyAddUserForm = (dispatchGetFormData, dispatchGetFormError, formData) => {
 
@@ -15,10 +16,13 @@ export const verifyAddUserForm = (dispatchGetFormData, dispatchGetFormError, for
   const phoneVelidationRegexp = /[0-9]+$/gi
   const phoneValidation = formData.phone.match(phoneVelidationRegexp)
 
-  if (allFieldsFilledIn && emailValidation !== null && phoneValidation !== null) {
+  const doubleUserValidation = users.filter(user => user.email === formData.email)
+  console.log(doubleUserValidation.length)
+
+  if (allFieldsFilledIn && emailValidation !== null && phoneValidation !== null && doubleUserValidation.length === 0) {
     dispatchGetFormError(errors.userAdded) && displayErrorFor(dispatchGetFormError, 5000)
     return dispatchGetFormData(formData)
   }
 
-  displayErrorMessagesAddUSer(allFieldsFilledIn, emailValidation, phoneValidation, dispatchGetFormError, formData, dispatchGetFormError)
+  displayErrorMessagesAddUSer(allFieldsFilledIn, emailValidation, phoneValidation, doubleUserValidation, dispatchGetFormError, formData, dispatchGetFormError)
 }

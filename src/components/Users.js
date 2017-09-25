@@ -6,6 +6,11 @@ import { filteredUsers } from '../helpers/filterUsers'
 import AddUsers from '../components/AddUser'
 import { connect } from 'react-redux'
 import { addDataToDisplay } from '../helpers/addDataToDisplay'
+import { displayErrorFor } from '../helpers/displayErrorFor'
+import { getError } from "../reducers/errorMessage"
+import { errors } from '../helpers/errorMessages'
+
+
 
 class Users extends React.Component {
 
@@ -19,6 +24,8 @@ class Users extends React.Component {
     let dataWithAddedUsers = addDataToDisplay(data, this.props.userToAdd)
     let dataFiltered = filteredUsers(dataWithAddedUsers, this.state.search)
 
+    // let doubleUserVerification = dataWithAddedUsers.filter(user => (this.props.userToAdd.length > 0) && user.email === this.props.userToAdd[0].email)
+    // doubleUserVerification.length > 0 ? this.props.getError(errors.userExists) : console.log(3)
     return (
       <div>
         <Grid
@@ -75,5 +82,7 @@ export default connect(
   state => ({
     userToAdd: state.addUser.userToAdd
   }),
-  dispatch => ({})
+  dispatch => ({
+    getError: data => dispatch(getError(data))
+  })
 )(Users)

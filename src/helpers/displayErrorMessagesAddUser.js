@@ -1,7 +1,7 @@
 import { errors } from '../helpers/errorMessages'
 import { displayErrorFor } from '../helpers/displayErrorFor'
 
-export const displayErrorMessagesAddUSer = (allFieldsFilledIn, emailValidation, phoneValidation, dispatchGetFormError, formData) => {
+export const displayErrorMessagesAddUSer = (allFieldsFilledIn, emailValidation, phoneValidation, doubleUserValidation, dispatchGetFormError, formData) => {
 
   const emptyField = allFieldsFilledIn === false ? errors.errorNotAllFieldsAreFilledIn : null
   emptyField && dispatchGetFormError(emptyField) && displayErrorFor(dispatchGetFormError, 5000)
@@ -14,4 +14,7 @@ export const displayErrorMessagesAddUSer = (allFieldsFilledIn, emailValidation, 
 
   const allDataIsValid = formData.name.length > 0 && formData.lastName.length > 0 && emailValidation !== null && phoneValidation !== null ? errors.userAdded : null
   allDataIsValid && dispatchGetFormError(allDataIsValid) && displayErrorFor(dispatchGetFormError, 5000)
+
+  const doubleUser = doubleUserValidation.length > 0 ? errors.userExists : null
+  doubleUser && dispatchGetFormError(doubleUser) && displayErrorFor(dispatchGetFormError, 5000)
 }
