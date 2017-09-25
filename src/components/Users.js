@@ -63,7 +63,6 @@ class Users extends React.Component {
               className='-striped -highlight'
               style={{marginTop: '0.5%'}}
             />
-            {console.log(this.props.userToAdd)}
             <AddUsers/>
           </Grid.Column>
         </Grid>

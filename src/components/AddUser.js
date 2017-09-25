@@ -6,16 +6,11 @@ import { getError } from '../reducers/errorMessage'
 import { verifyAddUserForm } from '../helpers/verifyAddUserForm'
 
 
-
 class AddUsers extends React.Component {
 
   constructor(props) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
-  }
-
-  state = {
-    userAdded: false
   }
 
   handleSubmit = () => {
@@ -27,15 +22,6 @@ class AddUsers extends React.Component {
 
     verifyAddUserForm(this.props.addUser, this.props.getError, formData)
 
-    this.setState({
-      userAdded: true
-    })
-  }
-
-  handleClearForm = () => {
-    this.setState({
-      userAdded: false
-    })
   }
 
   render() {
@@ -47,15 +33,13 @@ class AddUsers extends React.Component {
           verticalAlign='middle'
         >
           <Grid.Column style={{maxWidth: 850}}>
-            {/*{this.state.userAdded &&*/}
-            {/*<div className='ui blue segment' style={{marginTop: '1%'}}>New User Added</div>*/}
-            {/*}*/}
             {this.props.errorMessage &&
-            <div className='ui red segment' style={{marginTop: '1%'}}>
+            <div className={this.props.errorMessage === 'User succesfully added!' ?
+              'ui blue segment' :
+              'ui red segment'} style={{marginTop: '1%'}}>
               {this.props.errorMessage}
             </div>
             }
-            {console.log(this.props.errorMessage)}
             <Form onSubmit={this.handleSubmit} className='ui form' size='large'
                   style={{marginTop: '1%'}}>
               <Segment style={{paddingBottom: 0}} stacked>
@@ -106,7 +90,8 @@ class AddUsers extends React.Component {
                 </div>
                 <div className='equal width fields'>
                   <Button color='blue' fluid size='medium' type='submit'>Add new user</Button>
-                  <Button color='blue' fluid size='medium' type='reset' onClick={this.handleClearForm}>Clear Form</Button>
+                  <Button color='blue' fluid size='medium' type='reset'>Clear
+                    Form</Button>
                 </div>
               </Segment>
             </Form>
