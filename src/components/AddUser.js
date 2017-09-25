@@ -24,8 +24,8 @@ class AddUsers extends React.Component {
     for (const field in this.refs) {
       formData[field] = this.refs[field].value
     }
-    
-    verifyAddUserForm(this.props.addUser, formData)
+
+    verifyAddUserForm(this.props.addUser, this.props.getError, formData)
 
     this.setState({
       userAdded: true
@@ -47,8 +47,13 @@ class AddUsers extends React.Component {
           verticalAlign='middle'
         >
           <Grid.Column style={{maxWidth: 850}}>
-            {this.state.userAdded &&
-            <div className='ui blue segment' style={{marginTop: '1%'}}>New User Added</div>
+            {/*{this.state.userAdded &&*/}
+            {/*<div className='ui blue segment' style={{marginTop: '1%'}}>New User Added</div>*/}
+            {/*}*/}
+            {this.props.errorMessage &&
+            <div className='ui blue segment' style={{marginTop: '1%'}}>
+              {this.props.errorMessage}
+            </div>
             }
             <Form onSubmit={this.handleSubmit} className='ui form' size='large'
                   style={{marginTop: '1%'}}>
@@ -112,7 +117,9 @@ class AddUsers extends React.Component {
 }
 
 export default connect(
-  state => ({}),
+  state => ({
+    errorMessage: state.errorMessage.message
+  }),
   dispatch => ({
     addUser: data => dispatch(addUser(data)),
     getError: data => dispatch(getError(data))
