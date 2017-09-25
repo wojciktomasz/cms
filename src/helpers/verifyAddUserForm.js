@@ -3,7 +3,7 @@ import { errors } from '../helpers/errorMessages'
 import { displayErrorFor } from '../helpers/displayErrorFor'
 import users from '../data/users.json'
 
-export const verifyAddUserForm = (dispatchGetFormData, dispatchGetFormError, formData) => {
+export const verifyAddUserForm = (dispatchGetFormData, dispatchGetFormError, dispatchGetDoubleUsers, formData) => {
 
   const allFieldsFilledIn = formData.name.length > 0 &&
     formData.lastName.length > 0 &&
@@ -19,10 +19,14 @@ export const verifyAddUserForm = (dispatchGetFormData, dispatchGetFormError, for
   const doubleUserValidation = users.filter(user => user.email === formData.email)
   console.log(doubleUserValidation.length)
 
-  if (allFieldsFilledIn && emailValidation !== null && phoneValidation !== null && doubleUserValidation.length === 0) {
+  const doubleUserValidationInput = dispatchGetDoubleUsers.length !== undefined ? dispatchGetDoubleUsers.filter(user => user.email === formData.email) : 0
+  console.log(dispatchGetDoubleUsers.filter(user => user.email === formData.email))
+
+
+  if (allFieldsFilledIn && emailValidation !== null && phoneValidation !== null && doubleUserValidation.length === 0 && doubleUserValidationInput.length === 0) {
     dispatchGetFormError(errors.userAdded) && displayErrorFor(dispatchGetFormError, 5000)
     return dispatchGetFormData(formData)
   }
 
-  displayErrorMessagesAddUSer(allFieldsFilledIn, emailValidation, phoneValidation, doubleUserValidation, dispatchGetFormError, formData, dispatchGetFormError)
+  displayErrorMessagesAddUSer(allFieldsFilledIn, emailValidation, phoneValidation, doubleUserValidation, doubleUserValidationInput, dispatchGetFormError, formData, dispatchGetFormError)
 }

@@ -20,7 +20,7 @@ class AddUsers extends React.Component {
       formData[field] = this.refs[field].value
     }
 
-    verifyAddUserForm(this.props.addUser, this.props.getError, formData)
+    verifyAddUserForm(this.props.addUser, this.props.getError, this.props.userToAdd, formData)
 
   }
 
@@ -104,7 +104,8 @@ class AddUsers extends React.Component {
 
 export default connect(
   state => ({
-    errorMessage: state.errorMessage.message
+    errorMessage: state.errorMessage.message,
+    userToAdd: state.addUser.userToAdd
   }),
   dispatch => ({
     addUser: data => dispatch(addUser(data)),
