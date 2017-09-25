@@ -51,10 +51,11 @@ class AddUsers extends React.Component {
             {/*<div className='ui blue segment' style={{marginTop: '1%'}}>New User Added</div>*/}
             {/*}*/}
             {this.props.errorMessage &&
-            <div className='ui blue segment' style={{marginTop: '1%'}}>
+            <div className='ui red segment' style={{marginTop: '1%'}}>
               {this.props.errorMessage}
             </div>
             }
+            {console.log(this.props.errorMessage)}
             <Form onSubmit={this.handleSubmit} className='ui form' size='large'
                   style={{marginTop: '1%'}}>
               <Segment style={{paddingBottom: 0}} stacked>

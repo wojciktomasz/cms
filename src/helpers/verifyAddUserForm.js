@@ -7,6 +7,12 @@ export const verifyAddUserForm = (dispatchGetFormData, dispatchGetFormError, for
     formData.email.length > 0 &&
     formData.phone.length > 0
 
-    allFieldsFilledIn ? dispatchGetFormData(formData) : null
-    displayErrorMessagesAddUSer(allFieldsFilledIn, dispatchGetFormError, formData)
+  const emailValidationRegexp = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/gi
+  const emailValidation = formData.email.match(emailValidationRegexp)
+
+  const phoneVelidationRegexp = /[0-9]+$/gi
+  const phoneValidation = formData.phone.match(phoneVelidationRegexp)
+
+    allFieldsFilledIn && emailValidation !== null && phoneValidation !== null ? dispatchGetFormData(formData) : null
+    displayErrorMessagesAddUSer(allFieldsFilledIn, emailValidation, phoneValidation, dispatchGetFormError, formData)
 }
