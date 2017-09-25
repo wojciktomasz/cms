@@ -2,6 +2,9 @@ import React from 'react'
 import { Button, Form, Grid, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { addUser } from '../reducers/addUser'
+import { getError } from '../reducers/errorMessage'
+import { verifyAddUserForm } from '../helpers/verifyAddUserForm'
+
 
 
 class AddUsers extends React.Component {
@@ -21,7 +24,9 @@ class AddUsers extends React.Component {
     for (const field in this.refs) {
       formData[field] = this.refs[field].value
     }
-    this.props.addUser(formData)
+    
+    verifyAddUserForm(this.props.addUser, formData)
+
     this.setState({
       userAdded: true
     })
@@ -109,6 +114,7 @@ class AddUsers extends React.Component {
 export default connect(
   state => ({}),
   dispatch => ({
-    addUser: data => dispatch(addUser(data))
+    addUser: data => dispatch(addUser(data)),
+    getError: data => dispatch(getError(data))
   })
 )(AddUsers)
