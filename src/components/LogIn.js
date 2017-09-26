@@ -35,7 +35,7 @@ class LogIn extends React.Component {
             <Form onSubmit={this.handleSubmit} className='ui form' size='large'
                   style={{marginTop: '20%'}}>
               <Segment stacked>
-                <div className="field">
+                <div className='field'>
                   <label>e-mail</label>
                   <Form.Field
                     error={errorOnEmailField(this.props.errorMessage)}>
@@ -45,7 +45,7 @@ class LogIn extends React.Component {
                            placeholder='Enter e-mail'/>
                   </Form.Field>
                 </div>
-                <div className="field">
+                <div className='field'>
                   <label>password</label>
                   <Form.Field
                     error={errorOnPasswordField(this.props.errorMessage)}>
