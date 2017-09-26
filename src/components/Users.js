@@ -4,9 +4,7 @@ import { Grid } from 'semantic-ui-react'
 import ReactTable from 'react-table'
 import { filteredUsers } from '../helpers/filterUsers'
 import AddUsers from '../containers/AddUsers'
-import { connect } from 'react-redux'
 import { addDataToDisplay } from '../helpers/addDataToDisplay'
-import { getError } from "../reducers/errorMessage"
 
 
 class Users extends React.Component {
@@ -73,11 +71,4 @@ class Users extends React.Component {
   }
 }
 
-export default connect(
-  state => ({
-    userToAdd: state.addUser.userToAdd
-  }),
-  dispatch => ({
-    getError: data => dispatch(getError(data))
-  })
-)(Users)
+export default Users
