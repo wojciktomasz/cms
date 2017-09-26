@@ -3,7 +3,7 @@ import users from '../data/users.json'
 import { Grid } from 'semantic-ui-react'
 import ReactTable from 'react-table'
 import { filteredUsers } from '../helpers/filterUsers'
-import AddUsers from '../components/AddUser'
+import AddUsers from '../containers/AddUsers'
 import { connect } from 'react-redux'
 import { addDataToDisplay } from '../helpers/addDataToDisplay'
 import { getError } from "../reducers/errorMessage"
